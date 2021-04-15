@@ -92,6 +92,7 @@ function saveEvent() {
     obj["state"] = document.getElementById("newState").value;
     obj["attendance"] = document.getElementById("newAttendance").value;
     obj["date"] = document.getElementById("newDate").value;
+    // if any fields are blank, fire sweetalert, then return without adding to table.
     if (!obj.event || !obj.city || !obj.state || !obj.attendance || !obj.date ) {
         Swal.fire({
             icon: 'error',
