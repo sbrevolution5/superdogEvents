@@ -83,6 +83,8 @@ function getData() {
 function saveEvent() {
     //grab the events out of localstorage
     let events = JSON.parse(localStorage.getItem("eventArray")) || eventArray;
+    // todo Check for empty inputs
+    
     //Access values from the form by ID and add objecct to the array
     let obj = {};
     obj["event"] = document.getElementById("newEvent").value;
@@ -90,7 +92,15 @@ function saveEvent() {
     obj["state"] = document.getElementById("newState").value;
     obj["attendance"] = document.getElementById("newAttendance").value;
     obj["date"] = document.getElementById("newDate").value;
-
+    if (!obj.event || !obj.city || !obj.state || !obj.attendance || !obj.date ) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            footer: 'Fill in all forms.'
+        })
+        return
+    }
     events.push(obj);
 
     localStorage.setItem("eventArray", JSON.stringify(events));
@@ -118,11 +128,12 @@ function displayData(events) {
 }
 
 function formatDate(dateString) {
+    newDate = new Date(dateString);
     let resDate = ""
-    resDate+= dateString.slice(5,7)
+    resDate+= newDate.getMonth()
     resDate+= "/"
-    resDate+= dateString.slice(-2)
+    resDate+= newDate.getDay()
     resDate+= "/"
-    resDate+= dateString.slice(0,4)
+    resDate+= newDate.getFullYear()
     return resDate
 }
