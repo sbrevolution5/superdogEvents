@@ -141,9 +141,20 @@ function formatDate(dateString) {
     resDate+= newDate.getFullYear()
     return resDate
 }
+//FIXME changes filter, calling update functions
+function changeFilter(){
+    let filteredList = filterList(eventList)
+    computeStats(filteredList)
+}
 
-function filterList(eventList) {
-    
+function filterList(eventList, cityName) {
+    let currentList =[];
+    for (let i = 0; i < eventList.length; i++) {
+        if(eventList[i].city == cityName){
+            currentList.push(eventList[i]); 
+        }
+    }
+    return currentList
 }
 function computeStats(eventList){
     let average =computeAverage(eventList)
