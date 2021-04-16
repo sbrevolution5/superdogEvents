@@ -64,6 +64,10 @@ let eventsBase = [{
 ]
 
 loadEvents();
+// computeTotal(eventsBase)
+// console.log(computeAverage(eventsBase))
+// console.log(computeMax(eventsBase))
+// console.log(computeMin(eventsBase))
 
 function loadEvents() {
     let events = [];
@@ -107,7 +111,6 @@ function saveEvent() {
     localStorage.setItem("eventArray", JSON.stringify(events));
 
     displayData(events);
-
 }
 
 function displayData(events) {
@@ -137,4 +140,41 @@ function formatDate(dateString) {
     resDate+= "/"
     resDate+= newDate.getFullYear()
     return resDate
+}
+
+function filterList(eventList) {
+    
+}
+function computeTotal(eventList) {
+    let total = 0
+    for (let i = 0; i < eventList.length; i++) {
+        total += eventList[i].attendance;
+        
+    }
+    console.log(total)
+    return total;
+}
+function computeAverage(eventList) {
+    let total = computeTotal(eventList)
+    return total/eventList.length
+}
+function computeMax(eventList) {
+    let max = 0;
+    for (let i = 0; i < eventList.length; i++) {
+        if(eventList[i].attendance > max){
+            max = eventList[i].attendance
+        }
+        
+    }
+    return max
+}
+function computeMin(eventList) {
+    let min = Infinity;
+    for (let i = 0; i < eventList.length; i++) {
+        if (eventList[i].attendance < min) {
+            min = eventList[i].attendance
+        }
+
+    }
+    return min
 }
