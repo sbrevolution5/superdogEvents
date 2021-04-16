@@ -73,6 +73,7 @@ function loadEvents() {
     let events = [];
     events = getData();
     displayData(events);
+    computeStats(events)
 }
 
 function getData() {
@@ -101,8 +102,7 @@ function saveEvent() {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: 'Fill in all forms.'
+            text: 'Fill in all form elements please'
         })
         return
     }
@@ -150,6 +150,21 @@ function computeStats(eventList){
     let max =computeMax(eventList)
     let min =computeMin(eventList)
     let total =computeTotal(eventList)
+    displayStats(average, max,min,total)
+}
+function displayStats(average, max, min, total) {
+    const template = document.getElementById("dataTemplate");
+    const statsBody = document.getElementById("statsBody");
+    //clear table
+    //replace each data with ""(?) then replace with calculated value
+    injectData(average,"average")
+    injectData(max, "max")
+    injectData(min, "min")
+    injectData(total, "total")
+}
+
+function injectData(number, id){
+    document.getElementById(id).textContent = number
 }
 
 function computeTotal(eventList) {
@@ -158,7 +173,6 @@ function computeTotal(eventList) {
         total += eventList[i].attendance;
         
     }
-    console.log(total)
     return total;
 }
 function computeAverage(eventList) {
