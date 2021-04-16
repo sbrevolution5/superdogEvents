@@ -82,6 +82,7 @@ function getData() {
         events = eventsBase;
         localStorage.setItem("eventArray", JSON.stringify(events));
     }
+    buildDropDown(events);
     return events;
 }
 
@@ -111,6 +112,7 @@ function saveEvent() {
     localStorage.setItem("eventArray", JSON.stringify(events));
 
     displayData(events);
+    buildDropDown(events);
 }
 
 function displayData(events) {
@@ -199,14 +201,24 @@ function computeMin(eventList) {
     }
     return min
 }
-
-var filteredEvents = events
-//FIXME changes filter, calling update functions
-function buildDropDown(){
+// FILTER SECTION
+var filteredEvents = eventsBase
+function buildDropDown(eventsList){
     var eventDropDown = document.getElementById("eventDropDown")
-    let distinctEvents 
+    // creates a list of ONLY unique cities
+    let distinctCities = [...new Set(eventsList.map((event)=>event.city))] 
+    // This needs to be changed for a template, divider then link to all
+
+    let linkHTMLEnd = '<div class="dropdown-divider"></div><a class="dropdown-item" onclick="getEvents(this)" data-string="All" >All</a>';
+    let resultsHTML = ""
+    for (let i = 0; i < distinctCities.length; i++) {
+        resultsHTML += `<a class="dropdown-item" onclick="getEvents(this)" data-string="${distinctCities[i]}">${distinctCities[i]}</a>`;
+    }
+    resultsHTML += linkHTMLEnd;
+    eventDropDown.innerHTML = resultsHTML
 }
-function changeFilter(){
+//FIXME changes filter, calling update functions
+function getEvents(cityName){
     let filteredList = filterList(eventList)
     computeStats(filteredList)
 }
