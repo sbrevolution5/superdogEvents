@@ -96,7 +96,7 @@ function saveEvent() {
     obj["event"] = document.getElementById("newEvent").value;
     obj["city"] = document.getElementById("newCity").value;
     obj["state"] = document.getElementById("newState").value;
-    obj["attendance"] = document.getElementById("newAttendance").value;
+    obj["attendance"] = parseInt(document.getElementById("newAttendance").value);
     obj["date"] = document.getElementById("newDate").value;
     // if any fields are blank, fire sweetalert, then return without adding to table.
     if (!obj.event || !obj.city || !obj.state || !obj.attendance || !obj.date ) {
@@ -156,14 +156,14 @@ function displayStats(average, max, min, total) {
     const statsBody = document.getElementById("statsBody");
     //clear table
     //replace each data with ""(?) then replace with calculated value
-    injectData(average, "average")
+    injectData(total, "total")
+    injectData(average.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0}), "average")
     injectData(max, "max")
     injectData(min, "min")
-    injectData(total, "total")
 }
 
 function injectData(number, id) {
-    document.getElementById(id).textContent = number
+    document.getElementById(id).textContent = number.toLocaleString()
 }
 
 function computeTotal(eventList) {
@@ -219,7 +219,8 @@ function buildDropDown(eventsList){
 }
 //FIXME changes filter, calling update functions
 function getEvents(cityName){
-    let filteredList = filterList(eventList)
+    let eventlist= getData()
+    let filteredList = filterList(eventList,cityName)
     computeStats(filteredList)
 }
 
