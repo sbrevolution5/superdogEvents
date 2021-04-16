@@ -41,7 +41,7 @@
                         <a class="nav-link" href="code.html">See the code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">
+                        <a class="nav-link" href="https://github.com/sbrevolution5/superdogEvents" target="_blank">
                             <!--GITHUB LINK NEEDED-->Download the code</a>
                     </li>
                     <li class="nav-item">
@@ -54,54 +54,74 @@
     </header>
 
         <main role="main" class="container">
-            <div class="card">
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Event Stats (WIP)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">Total Attendance</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Average Attendance</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Highest Attendance</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Lowest Attendance</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="dropdown open">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary">Pick a Location</button>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                            <div class="dropdown-menu" id="eventDropDown" aria-labelledby="triggerId">
+                                <button class="dropdown-item" href="#">Action</button>
+                                <button class="dropdown-item disabled" href="#">Disabled action</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Event Stats (WIP)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row">Total Attendance</td>
+                                    <td id="totalAttendance"></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Average Attendance</td>
+                                    <td id="averageAttendance"></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Highest Attendance</td>
+                                    <td id="maxAttendance"></td>
+                                </tr>
+                                <tr>
+                                    <td scope="row">Lowest Attendance</td>
+                                    <td id="minAttendance"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6 order-first order-md-2">
+                    <img src="img/profile-img.jpg" class="img-fluid p-2" alt="">
+                </div>
             </div>
-            <hr>
-            <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#addEvent">Add
-                Event</button>
-            <hr>
-            <div class="card">
-                <table class="table table-striped" id="eventLog">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Event</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Attendance</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultsBody">
-                    </tbody>
-                </table>
-            </div>
-
+                    <hr>
+                    <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#addEvent">Add
+                        Event</button>
+                        <hr>
+                        <div class="card">
+                            <table class="table table-striped" id="eventLog">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Event</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Attendance</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsBody">
+                                </tbody>
+                            </table>
+                        </div>
+                        
             <!-- Modal -->
             <div class="modal fade" id="addEvent" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
                 aria-hidden="true">

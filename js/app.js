@@ -145,6 +145,13 @@ function formatDate(dateString) {
 function filterList(eventList) {
     
 }
+function computeStats(eventList){
+    let average =computeAverage(eventList)
+    let max =computeMax(eventList)
+    let min =computeMin(eventList)
+    let total =computeTotal(eventList)
+}
+
 function computeTotal(eventList) {
     let total = 0
     for (let i = 0; i < eventList.length; i++) {
