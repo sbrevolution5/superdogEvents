@@ -20,7 +20,7 @@
     <!-- <link rel="stylesheet" href="css/tacocat.css"> -->
 </head>
 
-<body>
+<body onload="loadEvents">
     <header>
         <!-- Fixed navbar -->
         <nav class="navbar navbar-expand-md fixed-top navbar-color">
@@ -45,7 +45,7 @@
                             <!--GITHUB LINK NEEDED-->Download the code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="profile.html">About The Author</a>
+                        <a class="nav-link" href="profile.html">About The Developer</a>
                     </li>
                 </ul>
 
@@ -69,12 +69,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
 
-                    <table class="table table-striped">
+                    <table class="table table-dark table-striped">
                         <thead>
                             <tr>
-                                <th>Event Stats</th>
+                                <th id="statsHeader">Event Stats</th>
                             </tr>
                         </thead>
                         <tbody id="statsBody">
@@ -96,7 +95,6 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
             </div>
             <div class="col-sm-6 order-first order-md-2">
                 <img src="img/profile-img.jpg" class="img-fluid p-2" alt="">
@@ -106,8 +104,8 @@
         <button type="button" class="btn btn-block btn-secondary" data-toggle="modal" data-target="#addEvent">Add
             Event</button>
         <hr>
-        <div class="card pb-2 mb-2">
-            <table class="table table-striped" id="eventLog">
+        <div class="pb-2 mb-2">
+            <table class="table table-dark table-striped" id="eventLog">
                 <thead class="thead-dark">
                     <tr>
                         <th>Event</th>

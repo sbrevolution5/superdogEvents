@@ -63,7 +63,7 @@ let eventsBase = [{
     }
 ]
 
-loadEvents();
+loadEvents()
 // computeTotal(eventsBase)
 // console.log(computeAverage(eventsBase))
 // console.log(computeMax(eventsBase))
@@ -73,7 +73,7 @@ function loadEvents() {
     let events = [];
     events = getData();
     displayData(events);
-    computeStats(events)
+    computeStats(events);
 }
 
 function getData() {
@@ -156,7 +156,7 @@ function displayStats(average, max, min, total) {
     const statsBody = document.getElementById("statsBody");
     //clear table
     //replace each data with ""(?) then replace with calculated value
-    injectData(total, "total")
+    injectData(total.toLocaleString(), "total")
     injectData(average.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0}), "average")
     injectData(max, "max")
     injectData(min, "min")
@@ -221,16 +221,22 @@ function buildDropDown(eventsList){
 function getEvents(element){
     let city = element.getAttribute("data-string")
     let eventList = JSON.parse(localStorage.getItem("eventArray")) || [];
-    let filteredList = filterList(eventList,cityName)
+    let filteredList = filterList(eventList,city)
+    document.getElementById("statsHeader").innerText = `Event stats for ${city}`
     computeStats(filteredList)
 }
 
 function filterList(eventList, cityName) {
     let currentList =[];
-    for (let i = 0; i < eventList.length; i++) {
-        if(eventList[i].city == cityName){
-            currentList.push(eventList[i]); 
+    if(cityName != "All"){
+
+        for (let i = 0; i < eventList.length; i++) {
+            if(eventList[i].city == cityName){
+                currentList.push(eventList[i]); 
+            }
         }
+    }else{
+        return eventList;
     }
     return currentList
 }
