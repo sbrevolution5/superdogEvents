@@ -181,7 +181,7 @@ function computeAverage(eventList) {
 }
 
 function computeMax(eventList) {
-    let max = 0;
+    let max = -1;
     for (let i = 0; i < eventList.length; i++) {
         if (eventList[i].attendance > max) {
             max = eventList[i].attendance
@@ -218,8 +218,9 @@ function buildDropDown(eventsList){
     eventDropDown.innerHTML = resultsHTML
 }
 //FIXME changes filter, calling update functions
-function getEvents(cityName){
-    let eventlist= getData()
+function getEvents(element){
+    let city = element.getAttribute("data-string")
+    let eventList = JSON.parse(localStorage.getItem("eventArray")) || [];
     let filteredList = filterList(eventList,cityName)
     computeStats(filteredList)
 }
