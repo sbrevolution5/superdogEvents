@@ -141,7 +141,71 @@ function formatDate(dateString) {
     resDate+= newDate.getFullYear()
     return resDate
 }
+function computeStats(eventList) {
+    let average = computeAverage(eventList)
+    let max = computeMax(eventList)
+    let min = computeMin(eventList)
+    let total = computeTotal(eventList)
+    displayStats(average, max, min, total)
+}
+
+function displayStats(average, max, min, total) {
+    const template = document.getElementById("dataTemplate");
+    const statsBody = document.getElementById("statsBody");
+    //clear table
+    //replace each data with ""(?) then replace with calculated value
+    injectData(average, "average")
+    injectData(max, "max")
+    injectData(min, "min")
+    injectData(total, "total")
+}
+
+function injectData(number, id) {
+    document.getElementById(id).textContent = number
+}
+
+function computeTotal(eventList) {
+    let total = 0
+    for (let i = 0; i < eventList.length; i++) {
+        total += eventList[i].attendance;
+
+    }
+    return total;
+}
+
+function computeAverage(eventList) {
+    let total = computeTotal(eventList)
+    return total / eventList.length
+}
+
+function computeMax(eventList) {
+    let max = 0;
+    for (let i = 0; i < eventList.length; i++) {
+        if (eventList[i].attendance > max) {
+            max = eventList[i].attendance
+        }
+
+    }
+    return max
+}
+
+function computeMin(eventList) {
+    let min = Infinity;
+    for (let i = 0; i < eventList.length; i++) {
+        if (eventList[i].attendance < min) {
+            min = eventList[i].attendance
+        }
+
+    }
+    return min
+}
+
+var filteredEvents = events
 //FIXME changes filter, calling update functions
+function buildDropDown(){
+    var eventDropDown = document.getElementById("eventDropDown")
+    let distinctEvents 
+}
 function changeFilter(){
     let filteredList = filterList(eventList)
     computeStats(filteredList)
@@ -155,58 +219,4 @@ function filterList(eventList, cityName) {
         }
     }
     return currentList
-}
-function computeStats(eventList){
-    let average =computeAverage(eventList)
-    let max =computeMax(eventList)
-    let min =computeMin(eventList)
-    let total =computeTotal(eventList)
-    displayStats(average, max,min,total)
-}
-function displayStats(average, max, min, total) {
-    const template = document.getElementById("dataTemplate");
-    const statsBody = document.getElementById("statsBody");
-    //clear table
-    //replace each data with ""(?) then replace with calculated value
-    injectData(average,"average")
-    injectData(max, "max")
-    injectData(min, "min")
-    injectData(total, "total")
-}
-
-function injectData(number, id){
-    document.getElementById(id).textContent = number
-}
-
-function computeTotal(eventList) {
-    let total = 0
-    for (let i = 0; i < eventList.length; i++) {
-        total += eventList[i].attendance;
-        
-    }
-    return total;
-}
-function computeAverage(eventList) {
-    let total = computeTotal(eventList)
-    return total/eventList.length
-}
-function computeMax(eventList) {
-    let max = 0;
-    for (let i = 0; i < eventList.length; i++) {
-        if(eventList[i].attendance > max){
-            max = eventList[i].attendance
-        }
-        
-    }
-    return max
-}
-function computeMin(eventList) {
-    let min = Infinity;
-    for (let i = 0; i < eventList.length; i++) {
-        if (eventList[i].attendance < min) {
-            min = eventList[i].attendance
-        }
-
-    }
-    return min
 }
