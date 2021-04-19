@@ -222,7 +222,7 @@ function getEvents(element){
     let city = element.getAttribute("data-string")
     let eventList = JSON.parse(localStorage.getItem("eventArray")) || [];
     let filteredList = filterList(eventList,city)
-    document.getElementById("statsHeader").innerText = `Event stats for ${city}`
+    document.getElementById("statsHeader").innerText = `Event Stats for ${city}`
     computeStats(filteredList)
 }
 
