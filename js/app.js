@@ -89,15 +89,14 @@ function getData() {
 function saveEvent() {
     //grab the events out of localstorage
     let events = JSON.parse(localStorage.getItem("eventArray")) || eventArray;
-    // todo Check for empty inputs
-    
     //Access values from the form by ID and add objecct to the array
     let obj = {};
     obj["event"] = document.getElementById("newEvent").value;
     obj["city"] = document.getElementById("newCity").value;
     obj["state"] = document.getElementById("newState").value;
     obj["attendance"] = parseInt(document.getElementById("newAttendance").value);
-    obj["date"] = document.getElementById("newDate").value;
+    let eventDate = document.getElementById("newDate").value
+    obj["date"] = `${eventDate}00:00`;
     // if any fields are blank, fire sweetalert, then return without adding to table.
     if (!obj.event || !obj.city || !obj.state || !obj.attendance || !obj.date ) {
         Swal.fire({
@@ -152,11 +151,12 @@ function computeStats(eventList) {
 }
 
 function displayStats(average, max, min, total) {
-    const template = document.getElementById("dataTemplate");
-    const statsBody = document.getElementById("statsBody");
+    //TODO Why isn't this used, is it neccesary
+    //const template = document.getElementById("dataTemplate");
+    //const statsBody = document.getElementById("statsBody");
     //clear table
     //replace each data with ""(?) then replace with calculated value
-    injectData(total.toLocaleString(), "total")
+    injectData(total, "total")
     injectData(average.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0}), "average")
     injectData(max, "max")
     injectData(min, "min")
