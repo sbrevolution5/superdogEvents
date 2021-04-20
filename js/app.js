@@ -64,10 +64,7 @@ let eventsBase = [{
 ]
 
 loadEvents()
-// computeTotal(eventsBase)
-// console.log(computeAverage(eventsBase))
-// console.log(computeMax(eventsBase))
-// console.log(computeMin(eventsBase))
+
 
 function loadEvents() {
     let events = [];
