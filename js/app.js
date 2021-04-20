@@ -132,7 +132,7 @@ function displayData(events) {
 function formatDate(dateString) {
     newDate = new Date(dateString);
     let resDate = ""
-    resDate+= newDate.getMonth()
+    resDate+= newDate.getMonth()+1
     resDate+= "/"
     resDate+= newDate.getDay()
     resDate+= "/"
